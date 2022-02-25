@@ -96,16 +96,12 @@ function isNumber(evt) {
   //ctrl + v press checking
   else if(keyCode == 17){
     flag = 1;
-    //if v is not pressed within 500 ms disable flag to prevent from entering v
-    //not good but temporary solution
-    setTimeout(function(){
+    evt.target.addEventListener("keyup",function(){
       flag = 0;
-    },500);
-    console.log("hello",flag);
+    });
     return true;
   }
   else if(flag == 1 && keyCode == 86){
-    console.log("world",flag);
     return true;
   }
 

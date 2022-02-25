@@ -1,5 +1,6 @@
 const allBox = document.getElementsByClassName("box");
 let flag = 0;//preventing from entering v
+let flag2 = true;//pasting from the focused field
 
 //add paste event and get data which is pasted
 Array.from(allBox).forEach(function (element) {
@@ -21,15 +22,19 @@ function pasteData(otpValue) {
   let counter = 0;
   for (let i = 0; i < 6; i++) {
     if (allBox[i].value == "") {
+      if(flag2 == true && i != 0){
+        i -=1;
+      }
       allBox[i].focus();
       allBox[i].value = otpValue[counter];
       counter++;
       if (counter >= otpValue.length) {
         break;
       }
+      flag2 = false;
     }
   }
-
+  flag2 = true;
 }
 
 //validate that pasted data is numbers only

@@ -5,64 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    .main-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 350px;
-      height: 500px;
-      background-color: rgb(192, 194, 194);
-      ;
-    }
-
-    .otp-container {
-      display: flex;
-      column-gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .box {
-      width: 30px;
-      height: 60px;
-      border-radius: 5px;
-      font-size: 30px;
-      text-align: center;
-      outline: none;
-      outline-offset: 0px;
-      border: none;
-    }
-
-    .box:hover {
-      background-color: rgb(228, 226, 226);
-    }
-
-    .box:focus {
-      outline: 2px solid #007bff;
-      background-color: white;
-    }
-
-    .btn {
-      width: 300px;
-      height: 40px;
-      border: none;
-      border-radius: 5px;
-      background-color: #007bff;
-      color: white;
-    }
-
-    ::selection {
-      background: #4094ee;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
   <title>otp</title>
 </head>
 
@@ -70,7 +13,7 @@
   <div class="main-container">
     <div class="otp-container">
       <input type="text" class="box" maxlength="1" name="first-digit" id="first" onkeydown="return isNumber(event)"
-        onfocus="this.select()" onmouseup="return false">
+        onfocus="this.select()" onmouseup="return false" >
       <input type="text" class="box" maxlength="1" name="second-digit" id="second" onkeydown="return isNumber(event)"
         onfocus="this.select()" onmouseup="return false">
       <input type="text" class="box" maxlength="1" name="third-digit" id="third" onkeydown="return isNumber(event)"
@@ -84,56 +27,7 @@
     </div>
     <button class="btn">CONTINUE</button>
   </div>
-  <script>
-    function isNumber(evt) {
-
-      var keyCode = evt["keyCode"];
-      //digit validation and left arrow key validation
-      if (keyCode >= 48 && keyCode <= 57 || keyCode == 39) {
-        setTimeout(function () {
-          if (evt.target.id != "six") {
-            evt.target.nextElementSibling.focus();
-          }
-        }, 0.1);
-
-        return true;
-      }
-      // right arrow key and backspace keypress condition 
-      else if (keyCode == 37 || keyCode == 8) {
-        setTimeout(function () {
-          if (keyCode == 8) {
-            let currentelement = evt.target;
-            while ( currentelement.id != "six" &&  currentelement.nextElementSibling.value != "") {
-              currentelement.value = currentelement.nextElementSibling.value;
-              currentelement.nextElementSibling.value = "";
-              currentelement = currentelement.nextElementSibling;
-            }
-          }
-          if (evt.target.id != "first") {
-            evt.target.previousElementSibling.focus();
-          }
-        }, 0.1);
-        return true;
-      }
-      //delete button press validation 
-      else if(keyCode == 46){
-
-        if( evt.target.id == "six" || evt.target.nextElementSibling.value == "" ){
-          evt.target.value = "";
-        }
-
-        let currentelement = evt.target;
-        while ( currentelement.id != "six" &&  currentelement.nextElementSibling.value != "") {
-              currentelement.value = currentelement.nextElementSibling.value;
-              currentelement.nextElementSibling.value = "";
-              currentelement = currentelement.nextElementSibling;
-            }
-        
-        return true;
-      }
-      return false;
-    }
-  </script>
+  <script src="app.js"></script>
 </body>
 
 </html>
